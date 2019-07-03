@@ -1,0 +1,17 @@
+version: '3'
+services:
+ web:
+  image: wordpress
+  links:
+   - mysql
+  environment:
+   - WORDPRESS_DB_PASSWORD="mysql"
+  ports:
+   - "8080:80"
+  labels:
+      kompose.service.type: LoadBalancer
+ mysql:
+  image: mysql:latest
+  environment:
+   - MYSQL_ROOT_PASSWORD="mysql"
+   - MYSQL_DATABASE="mysqldb"
